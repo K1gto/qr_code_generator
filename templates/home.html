@@ -1,24 +1,19 @@
 {% extends 'base.html' %}
-{% load crispy_forms_filters %}
+
+{% block title %}Генератор QR-кодів{% endblock %}
 
 {% block content %}
-<div class="starter-template text-center py-5 px-3">
-    <h1>QR Code Generator</h1>
-    <form method="post" class="form-inline justify-content-center">
-        {% csrf_token %}
-        <div class="form-group mb-2">
-            {{ form.link|as_crispy_field }}
-        </div>
-        <button type="submit" class="btn btn-primary mb-2">Generate QR Code</button>
-    </form>
-    {% if qr_code_img %}
-        <div class="mt-4">
-            <a href="{{ qr_code_img }}">
-                <img src="{{ qr_code_img }}" alt="QR Code" class="qr-code">
-            </a>
-        </div>
-    {% endif %}
-</div>
+  <h1>Генератор QR-кодів</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Згенерувати</button>
+  </form>
+  {% if qr_code %}
+    <h2>Згенерований QR-код:</h2>
+    <img src="{{ qr_code.qr_code_image.url }}" alt="QR Code">
+    <a href="{{ qr_code.qr_code_image.url }}" download="qrcode.png"><button type="button">Завантажити QR-код</button></a>
+  {% endif %}
 {% endblock %}
 
 

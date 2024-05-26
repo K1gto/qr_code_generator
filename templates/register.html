@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-{% load crispy_forms_filters %}
+
+{% block title %}Реєстрація{% endblock %}
 
 {% block content %}
-<div class="starter-template text-center py-5 px-3">
-    <h1>Register</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-</div>
+  <h1>Реєстрація</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зареєструватися</button>
+  </form>
 {% endblock %}
 

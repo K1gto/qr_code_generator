@@ -1,19 +1,14 @@
 {% extends 'base.html' %}
-{% load crispy_forms_filters %}
+
+{% block title %}Історія QR-кодів{% endblock %}
 
 {% block content %}
-<div class="starter-template text-center py-5 px-3">
-    <h1>QR Code History</h1>
-    {% if qr_code_img %}
-        <div class="mt-4">
-            <a href="{{ qr_code_img }}">
-                <img src="{{ qr_code_img }}" alt="QR Code" class="qr-code">
-            </a>
-        </div>
-    {% endif %}
+  <h1>Історія QR-кодів</h1>
+  <ul>
     {% for qr_code in qr_codes %}
-        <p>QR:{{ qr_code }}</p>
-    {%endfor%}
-</div>
+      <li>
+        <a href="{{ qr_code.qr_code_image.url }}">{{ qr_code.link }}</a> – створено {{ qr_code.created_at }}
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
-
