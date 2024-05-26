@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="starter-template text-center py-5 px-3">
+    <h1>QR Code Generator</h1>
+    <form method="post" class="form-inline justify-content-center">
+        {% csrf_token %}
+        <div class="form-group mb-2">
+            {{ form.link|as_crispy_field }}
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Generate QR Code</button>
+    </form>
+    {% if qr_code_img %}
+        <div class="mt-4">
+            <a href="{{ qr_code_img }}">
+                <img src="{{ qr_code_img }}" alt="QR Code" class="qr-code">
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
