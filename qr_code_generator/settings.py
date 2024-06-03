@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import dj_database_url
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-0kfhv8o=+9gt!ba%@x_ze5eij6g1e2b^i8n0+1z@()roj@q11m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', "False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,9 +85,9 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get('DATABASE_URL')
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+
+DATABASES["default"] = dj_database_url.parse('postgres://qrapp_user:8MhC0JhlYKAX3IWieAYNDP6Q9WXYi37y@dpg-cpecnd7109ks73etqfgg-a.frankfurt-postgres.render.com/qrapp')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
